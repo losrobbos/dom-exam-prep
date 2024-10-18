@@ -62,16 +62,21 @@ import theDefaultExport from './calc.js'
 
 ### Default Export & Import
 
+Default Export nutzt man häufig, wenn ein Modul genau EINE Function
+oder EIN Objekt exportiert.
+
 Export:
 
 ```
+  // exportiere eine Funktion
   export default () => {
-
+    console.log("Bla")
   }
 
-  export default {
+  // exportiere ein Object
+  /* export default {
     name: "Blub"
-  }
+  }*/
 
 ```
 
@@ -139,8 +144,17 @@ Installiere package per npm
 npm install gsap
 ```
 
-Jetzt brauchen wir einen BUNDLER,
-der den Package Code und den eigenen Code ZUSAMMEN MERGED.
+Wenn wir Packages mit NPM installieren, kann der Browser 
+diese standardmäßig nicht importieren.
+
+Beispiel, die Zeile: 
+`import gsap from 'gsap'`
+würde scheitern, weil das Gsap Modul nicht gefunden werden kann.
+
+Jetzt brauchen wir einen BUNDLER, der den Package Code 
+und den eigenen Code ZUSAMMEN MERGED in ein sogenanntes BUNDLE.
+
+Das ist nun der Schritt, wo wir zu einem npm WebProjekt wechseln. 
 
 ## npm Projektinitialisierung
 
@@ -189,36 +203,52 @@ Starten des Web Projektes:
 
 ## Browser-Objekte wie window
 
+Typische globale Objekte im window scope
+(das sind einfach Unterobjekte des window Objektes)
+
 ```
 window.document
-document
-
 window.alert
-
-alert
-
 window.onresize = () => {...}
-onresize = () => {...}
+window.JSON
+window.URL
+
+Auf alle Unterobjekte von window können wir direkt zugreifen, ohne .window:
 ```
+document
+alert
+onresize = () => {...}
+etc
+```
+
+Prüfen ob bestimmtes Element in window ist
+
+`console.log( "<objektname>" in window )`
 
 ## Events und Event-Handling
 
-// Event Listener
-
-// 1. Hole Item dass Event produziert (Click, Input, Change, KeyDown)
+1. Hole Item dass Event produziert (Click, Input, Change, KeyDown)
+```
 const btn = document.querySelector(".btnToSomething");
 const input = document.querySelector(".input")
 console.log(input)
+```
 
-// 2. adde event listener
-// => sage auf welches Event wir warten => und führe dann beim Event eine FUNCTION aus
+2. Adde event listener
 
-// Methode 1 => nur EIN Event auf dem Item festlegen 
-// btn.onclick = () => {
-//   console.log("Geklickt")
-// }
+Methode 1 => nur EIN Event auf dem Item festlegen 
 
-// Methode 2 => addEventListener => kann MEHRMALS aufgerufen werden
+```
+btn.onclick = () => {
+   console.log("Geklickt")
+}
+```
+
+Methode 2 => addEventListener 
+
+Mit addEventListener können wir MEHRERE Functions an ein Event hängen
+
+```
 // bei addEventListener kann man "on" bei Events weglassen, weil klar ist
 // dass es Events sind, die alle mit on anfangen
 btn.addEventListener("click", () => {
@@ -227,13 +257,17 @@ btn.addEventListener("click", () => {
 btn.addEventListener("click", () => {
   console.log("Geklickt 2");
 });
+```
 
-// beide (!) Functions werden nun bei Klick auf Button ausgeführt
+Beide (!) Functions werden nun bei Klick auf Button ausgeführt
 
-// INPUT Event
+INPUT Event
+
+```
 input.addEventListener("input", () => {
   console.log(input.value)
 })
+```
 
 ## HTTP-Methoden (z.B. POST)
 

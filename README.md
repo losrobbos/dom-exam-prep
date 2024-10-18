@@ -212,8 +212,10 @@ window.alert
 window.onresize = () => {...}
 window.JSON
 window.URL
+```
 
 Auf alle Unterobjekte von window können wir direkt zugreifen, ohne .window:
+
 ```
 document
 alert
@@ -350,7 +352,7 @@ document.getElementsByClassName // holt ALLE Elements dieser Klasse
 ### Method 1: style prop
 
 `element.style.cssPropertyCamelCase`
-Beispiel: div.style.backgroundColor = "red"
+Beispiel: `div.style.backgroundColor = "red"`
 
 ### Method 2: classList 
 
@@ -358,10 +360,10 @@ Beispiel: div.style.backgroundColor = "red"
 `element.classList.remove("<className>")`
 `element.classList.toggle("<className>")`
 
-Beispiel: div.classList.toggle("active")
+Beispiel: `div.classList.toggle("active")`
 
 # Method 3: style.cssText prop
 
 Alles CSS des Elements überschreiben
 
-Beispiel: div.style.cssText = "font-size: 16px; background-color: aqua;
+Beispiel: `div.style.cssText = "font-size: 16px; background-color: salmon;`
